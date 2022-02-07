@@ -9,7 +9,6 @@ class Vehicle {
     this.model = model;
     this.manufactureDate = manufactureDate;
   }
-  // length width height
   getMaxSize() {
     if (
       this.dimensions.sizeLength > this.dimensions.sizeWidth &&
@@ -69,7 +68,7 @@ class PassengerTransport extends Vehicle {
   }
 }
 
-const vwTransporter = new PassengerTransport(
+const passengerCar = new PassengerTransport(
   { sizeLength: 4.89, sizeWidth: 1.905, sizeHeight: 1.945 },
   "Volkswagen",
   "Transporter T5",
@@ -78,14 +77,39 @@ const vwTransporter = new PassengerTransport(
   4
 );
 
-console.log("vwTransporter :>> ", vwTransporter);
-console.log("vwTransporter.getMaxSize() :>> ", vwTransporter.getMaxSize());
-console.log("vwTransporter.getAge() :>> ", vwTransporter.getAge());
-console.log("vwTransporter.addPasseger() :>> ", vwTransporter.addPassenger());
-console.log("vwTransporter.passengerCount :>> ", vwTransporter.passengerCount);
+console.log("passengerCar :>> ", passengerCar);
+console.log("passengerCar.getMaxSize() :>> ", passengerCar.getMaxSize());
+console.log("passengerCar.getAge() :>> ", passengerCar.getAge());
+console.log("passengerCar.addPasseger() :>> ", passengerCar.addPassenger());
+console.log("passengerCar.passengerCount :>> ", passengerCar.passengerCount);
 
 console.groupEnd();
 
 console.group("Дочерний класс FreightTransport");
+
+class FreightTransport extends Vehicle {
+  constructor(dimensions, brand, model, manufactureDate, capacity) {
+    super(dimensions, brand, model, manufactureDate);
+    this.capacity = capacity;
+  }
+
+  checkLoadingPossibility(weight) {
+    return this.capacity >= weight;
+  }
+}
+
+const freightCar = new FreightTransport(
+  { sizeLength: 7.435, sizeWidth: 2.5, sizeHeight: 2.63 },
+  "КамАЗ",
+  "5320",
+  1976,
+  10000
+);
+
+console.log("freightCar :>> ", freightCar);
+console.log("freightCar.getMaxSize() :>> ", freightCar.getMaxSize());
+console.log("freightCar.getAge() :>> ", freightCar.getAge());
+console.log(freightCar.checkLoadingPossibility(5600));
+console.log(freightCar.checkLoadingPossibility(11000));
 
 console.groupEnd();
